@@ -34,8 +34,7 @@ pub struct Donor {
 
     /// Research consents. Multiple declarations of consent are possible! Must be assigned to the
     /// respective data sets.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub research_consents: Option<Vec<ResearchConsent>>,
+    pub research_consents: Vec<ResearchConsent>,
 }
 
 /// Gender of the donor.
@@ -513,19 +512,46 @@ pub enum Relation {
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "camelCase")]
 pub struct ResearchConsent {
-    /// Date of the delivery of the research consent in ISO 8601 format (YYYY-MM-DD)
+    /// Justification if no scope object is present.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub presentation_date: Option<String>,
+    pub no_scope_justification: Option<NoScopeJustification>,
+
+    /// Date of the delivery of the research consent in ISO 8601 format (YYYY-MM-DD)
+    pub presentation_date: String,
 
     /// Schema version of de.medizininformatikinitiative.kerndatensatz.consent
-    pub schema_version: SchemaVersion,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub schema_version: Option<SchemaVersion>,
 
     /// Scope of the research consent in JSON format following the MII IG Consent v2025 FHIR
     /// schema. See
     /// 'https://www.medizininformatik-initiative.de/Kerndatensatz/KDS_Consent_V2025/MII-IG-Modul-Consent.html'
     /// and
     /// 'https://packages2.fhir.org/packages/de.medizininformatikinitiative.kerndatensatz.consent'.
-    pub scope: HashMap<String, Option<serde_json::Value>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub scope: Option<HashMap<String, Option<serde_json::Value>>>,
+}
+
+/// Justification if no scope object is present.
+#[derive(Debug, Serialize, Deserialize)]
+pub enum NoScopeJustification {
+    #[serde(rename = "consent information cannot be submitted by LE due to technical reason")]
+    TechnicalReason,
+
+    #[serde(rename = "consent is not implemented at LE due to organizational issues")]
+    OrganizationalIssues,
+
+    #[serde(rename = "other patient-related reason")]
+    OtherPatientRelatedReason,
+
+    #[serde(rename = "patient did not return consent documents")]
+    PatientDidNotReturnConsentDocuments,
+
+    #[serde(rename = "patient refuses to sign consent")]
+    PatientRefusesToSignConsent,
+
+    #[serde(rename = "patient unable to consent")]
+    PatientUnableToConsent,
 }
 
 /// Schema version of de.medizininformatikinitiative.kerndatensatz.consent
