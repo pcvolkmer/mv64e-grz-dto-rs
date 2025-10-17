@@ -38,7 +38,7 @@ pub struct Donor {
 }
 
 /// Gender of the donor.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum Gender {
@@ -124,7 +124,7 @@ pub struct LabDatum {
 }
 
 /// Manufacturer of the enrichment kit
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub enum EnrichmentKitManufacturer {
     Agilent,
@@ -147,7 +147,7 @@ pub enum EnrichmentKitManufacturer {
 }
 
 /// Fragmentation method
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum FragmentationMethod {
@@ -163,7 +163,7 @@ pub enum FragmentationMethod {
 }
 
 /// Library type
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum LibraryType {
@@ -193,7 +193,7 @@ pub enum LibraryType {
 }
 
 /// Sample conservation
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "kebab-case")]
 pub enum SampleConservation {
@@ -299,7 +299,7 @@ pub struct File {
 }
 
 /// Type of checksum algorithm used
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum ChecksumType {
@@ -307,7 +307,7 @@ pub enum ChecksumType {
 }
 
 /// Type of the file; if BED file is submitted, only 1 file is allowed.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum FileType {
@@ -321,7 +321,7 @@ pub enum FileType {
 }
 
 /// Indicates the read order for paired-end reads.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub enum ReadOrder {
     R1,
@@ -344,7 +344,7 @@ pub struct PercentBasesAboveQualityThreshold {
 
 /// Reference genome used according to the Genome Reference Consortium
 /// (https://www.ncbi.nlm.nih.gov/grc)
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub enum ReferenceGenome {
     #[serde(rename = "GRCh37")]
@@ -355,7 +355,7 @@ pub enum ReferenceGenome {
 }
 
 /// Subtype of sequence (germline, somatic, etc.)
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum SequenceSubtype {
@@ -369,7 +369,7 @@ pub enum SequenceSubtype {
 }
 
 /// Type of sequence (DNA or RNA)
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum SequenceType {
@@ -379,7 +379,7 @@ pub enum SequenceType {
 }
 
 /// The sequencing layout, aka the end type of sequencing.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "kebab-case")]
 pub enum SequencingLayout {
@@ -415,7 +415,7 @@ pub struct TumorCellCount {
 }
 
 /// Method used to determine cell count.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum Method {
@@ -462,7 +462,7 @@ pub struct Scope {
 }
 
 /// Scope of consent or revocation.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "camelCase")]
 pub enum Domain {
@@ -478,7 +478,7 @@ pub enum Domain {
 
 /// Consent or refusal to participate and consent, must be indicated for each option listed
 /// in the scope of consent.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum Type {
@@ -489,7 +489,7 @@ pub enum Type {
 
 /// Relationship of the donor in respect to the index patient, e.g. 'index', 'brother',
 /// 'mother', etc.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum Relation {
@@ -533,7 +533,7 @@ pub struct ResearchConsent {
 }
 
 /// Justification if no scope object is present.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub enum NoScopeJustification {
     #[serde(rename = "consent information cannot be submitted by LE due to technical reason")]
     TechnicalReason,
@@ -555,7 +555,7 @@ pub enum NoScopeJustification {
 }
 
 /// Schema version of de.medizininformatikinitiative.kerndatensatz.consent
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub enum SchemaVersion {
     #[serde(rename = "2025.0.1")]
@@ -613,7 +613,7 @@ pub struct Submission {
 /// Berufsgenossenschaft, "SEL" Selbstzahler, "SOZ" Sozialamt, "GPV" gesetzliche
 /// Pflegeversicherung, "PPV" private Pflegeversicherung, "BEI" Beihilfe, "SKT" Sonstige
 /// Kostenträger, "UNK" Unbekannt
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub enum CoverageType {
     #[serde(rename = "BEI")]
@@ -648,7 +648,7 @@ pub enum CoverageType {
 }
 
 /// Type of the disease
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum DiseaseType {
@@ -660,7 +660,7 @@ pub enum DiseaseType {
 }
 
 /// whether tumor and/or germ-line are tested
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "kebab-case")]
 pub enum GenomicStudySubtype {
@@ -675,7 +675,7 @@ pub enum GenomicStudySubtype {
 }
 
 /// whether additional persons are tested as well
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum GenomicStudyType {
@@ -688,7 +688,7 @@ pub enum GenomicStudyType {
 
 /// The options are: 'initial' for first submission, 'followup' is for followup submissions,
 /// 'addition' for additional submission, 'correction' for correction
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "snake_case")]
 pub enum SubmissionType {
